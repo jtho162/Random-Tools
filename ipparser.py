@@ -12,7 +12,7 @@ Note:  When CIDR notation is used, the program removes the network and broadcast
 192.168.1.1-192.168.1.3  
 192.168.1.1/24
 192.168.1.1-50
-
+192.168.1.*
 '''
 
 def process(i):
@@ -35,7 +35,7 @@ def process(i):
 		pass
 
 	else:
-		print(i)
+		print(i.lstrip().rstrip())
 
 def ipwithdash(j):
 #Processes IP address after the dash.
