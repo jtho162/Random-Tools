@@ -6,19 +6,19 @@ import sys
 import os.path
 
 '''
-The program now has support for the following:
+The program now has support for the following.  Allows for , and ; as a means to break the rows.
 Note:  When CIDR notation is used, the program removes the network and broadcast address.
 192.168.1.1
-192.168.1.1-192.168.1.3  
+192.168.1.1-192.168.1.3
 192.168.1.1/24
 192.168.1.1-50
 192.168.1.*
 '''
-
 def process(i):
+
 	if re.search('-', i):
-		numberwithdash(i)
-		ipwithdash(i)
+		dash2(i)
+		withdash(i)
         
 	elif re.search('/',i):
 		for ip in IPNetwork(i).iter_hosts():
@@ -37,13 +37,17 @@ def process(i):
 	else:
 		print(i.lstrip().rstrip())
 
-def ipwithdash(j):
-#Processes IP address after the dash.
+
+def withdash(j):
     try:
         c = j.split('-')
+
         firstip, secondip  = c[0].lstrip().rstrip(), c[1].lstrip().rstrip()
+
         listfirstip, listsecondip = list(firstip.split('.')), list(secondip.split('.'))
+
         start, end = int(listfirstip[3]), int(listsecondip[3])
+
         first_3_octects = listfirstip[0:3]
         first_3 = (".".join(str(dot) for dot in first_3_octects))
 
@@ -53,8 +57,7 @@ def ipwithdash(j):
     except IndexError:
         pass
 
-def numberwithdash(j):
-#Checks for whole number after the dash.
+def dash2(j):
     try:
         c = j.split('-')
         if len(c[1]) <= 3:
@@ -72,7 +75,7 @@ def numberwithdash(j):
         pass
 
 def usage():
-	print("\n" + "Example Usage:  ./ipparser.py \"nameoffile.txt\"" + "\n")
+	print("\n" + "Example Usage is:  ./ipparser.py \"nameoffile.txt\"" + "\n")
 
 def main():
 	try:
@@ -91,11 +94,17 @@ def main():
 				j = i.split(',')
 				for k in j:
 					process(k)
+			
+			elif re.search(';', i):
+				j = i.split(';')
+				for k in j:
+					process(k)
+
 			else:
 				process(i)        
 
 	except:
-		print( "\n" + "You must supply a valid file to parse")
+		print( "You must supply a file to parse")
 		usage()
 
 	sys.exit(2)
