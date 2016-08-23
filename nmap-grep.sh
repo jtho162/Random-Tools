@@ -131,7 +131,7 @@ else
 fi
 
 echo
-echo "===========[ nmap-grep.sh - Ted R (github: actuated) ]==========="
+echo "===========[ nmap-grep.sh ]==========="
 echo
 echo "Input File: $varInFile"
 if [ "$varOutPath" != "" ]; then echo "Output Path: $varOutPath"; fi
