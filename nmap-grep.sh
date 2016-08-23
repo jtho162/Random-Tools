@@ -1,10 +1,6 @@
 #!/bin/bash
 # nmap-grep.sh
-# 12/28/2015 by by Ted R (http://github.com/actuated)
 # Script for parsing and splitting grepable nmap output files
-# 12/28/2015 - Changed summary output to printf table
-# 12/30/2015 - Changed sort option for summary table to use sort -V
-# 1/1/2016 - Aesthetic change
 
 varTempRandom=$(( ( RANDOM % 9999 ) + 1 ))
 varTempFile="temp-nmp-$varTempRandom.txt"
@@ -27,7 +23,7 @@ varFlagOutExists="N"
 function usage
 {
   echo
-  echo "===========[ nmap-grep.sh - Ted R (github: actuated) ]==========="
+  echo "===========[ nmap-grep.sh ]==========="
   echo
   echo "Parse grepable Nmap output files to create (by default):"
   echo "- A summary of hosts and their open ports."
