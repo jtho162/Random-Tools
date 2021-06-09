@@ -131,23 +131,23 @@ else
 fi
 
 echo
-echo "===========[ nmap-grep.sh ]==========="
-echo
+#echo "===========[ nmap-grep.sh ]==========="
+#echo
 echo "Input File: $varInFile"
 if [ "$varOutPath" != "" ]; then echo "Output Path: $varOutPath"; fi
 if [ "$varOutPath" = "" ]; then echo "Output Path: Current Directory"; fi
 echo
-echo "Functions:"
-if [ "$varDoLiveHosts" = "Y" ]; then echo "- Create up-hosts.txt"; fi
-if [ "$varDoSummary" = "Y" ]; then echo "- Create summary.txt"; fi
-if [ "$varDoSplit" = "Y" ]; then echo "- Create [port]-[tcp/udp]-hosts.txt for each open port"; fi
-if [ "$varRenameSplit" = "Y" ]; then echo "- Rename split hosts files for common services"; fi
-if [ "$varDoWebUrl" = "Y" ]; then echo "- Create web-urls.txt"; fi
-if [ "$varDoSmbUrl" = "Y" ]; then echo "- Create smb-urls.txt"; fi
-echo
-if [ "$varFlagOutExists" = "Y" ]; then echo "Note: $varOutPath already existed. Files may be appended."; echo; fi
-read -p "Press Enter to confirm..."
-echo
+#echo "Functions:"
+#if [ "$varDoLiveHosts" = "Y" ]; then echo "- Create up-hosts.txt"; fi
+#if [ "$varDoSummary" = "Y" ]; then echo "- Create summary.txt"; fi
+#if [ "$varDoSplit" = "Y" ]; then echo "- Create [port]-[tcp/udp]-hosts.txt for each open port"; fi
+#if [ "$varRenameSplit" = "Y" ]; then echo "- Rename split hosts files for common services"; fi
+#if [ "$varDoWebUrl" = "Y" ]; then echo "- Create web-urls.txt"; fi
+#if [ "$varDoSmbUrl" = "Y" ]; then echo "- Create smb-urls.txt"; fi
+#echo
+#if [ "$varFlagOutExists" = "Y" ]; then echo "Note: $varOutPath already existed. Files may be appended."; echo; fi
+#read -p "Press Enter to confirm..."
+#echo
 echo "===========================[ results ]==========================="
 
 # Read input file for up-hosts.txt
@@ -246,7 +246,9 @@ if [ "$varRenameSplit" = "Y" ]; then
   if [ -f "${varOutPath}69-udp-hosts.txt" ]; then mv ${varOutPath}69-udp-hosts.txt ${varOutPath}tftp-hosts.txt; fi
   if [ -f "${varOutPath}80-tcp-hosts.txt" ]; then mv ${varOutPath}80-tcp-hosts.txt ${varOutPath}http-hosts.txt; fi
   if [ -f "${varOutPath}110-tcp-hosts.txt" ]; then mv ${varOutPath}110-tcp-hosts.txt ${varOutPath}pop3-hosts.txt; fi
+  if [ -f "${varOutPath}111-udp-hosts.txt" ]; then mv ${varOutPath}111-udp-hosts.txt ${varOutPath}nfs-hosts.txt; fi
   if [ -f "${varOutPath}123-udp-hosts.txt" ]; then mv ${varOutPath}123-udp-hosts.txt ${varOutPath}ntp-hosts.txt; fi
+  if [ -f "${varOutPath}137-udp-hosts.txt" ]; then mv ${varOutPath}137-udp-hosts.txt ${varOutPath}nbt-hosts.txt; fi
   if [ -f "${varOutPath}143-tcp-hosts.txt" ]; then mv ${varOutPath}143-tcp-hosts.txt ${varOutPath}imap-hosts.txt; fi
   if [ -f "${varOutPath}161-udp-hosts.txt" ]; then mv ${varOutPath}161-udp-hosts.txt ${varOutPath}snmp-hosts.txt; fi
   if [ -f "${varOutPath}162-udp-hosts.txt" ]; then mv ${varOutPath}162-udp-hosts.txt ${varOutPath}snmptrap-hosts.txt; fi
@@ -259,6 +261,7 @@ if [ "$varRenameSplit" = "Y" ]; then
   if [ -f "${varOutPath}513-tcp-hosts.txt" ]; then mv ${varOutPath}513-tcp-hosts.txt ${varOutPath}rlogin-hosts.txt; fi
   if [ -f "${varOutPath}514-tcp-hosts.txt" ]; then mv ${varOutPath}514-tcp-hosts.txt ${varOutPath}remoteshell-hosts.txt; fi
   if [ -f "${varOutPath}636-tcp-hosts.txt" ]; then mv ${varOutPath}636-tcp-hosts.txt ${varOutPath}ldaps-hosts.txt; fi
+  if [ -f "${varOutPath}623-udp-hosts.txt" ]; then mv ${varOutPath}623-udp-hosts.txt ${varOutPath}ipmi-hosts.txt; fi
   if [ -f "${varOutPath}873-tcp-hosts.txt" ]; then mv ${varOutPath}873-tcp-hosts.txt ${varOutPath}rsync-hosts.txt; fi
   if [ -f "${varOutPath}989-tcp-hosts.txt" ]; then mv ${varOutPath}989-tcp-hosts.txt ${varOutPath}ftps-data-hosts.txt; fi
   if [ -f "${varOutPath}990-tcp-hosts.txt" ]; then mv ${varOutPath}990-tcp-hosts.txt ${varOutPath}ftps-hosts.txt; fi
@@ -266,8 +269,12 @@ if [ "$varRenameSplit" = "Y" ]; then
   if [ -f "${varOutPath}993-tcp-hosts.txt" ]; then mv ${varOutPath}993-tcp-hosts.txt ${varOutPath}imaps-hosts.txt; fi
   if [ -f "${varOutPath}995-tcp-hosts.txt" ]; then mv ${varOutPath}995-tcp-hosts.txt ${varOutPath}pop3s-hosts.txt; fi
   if [ -f "${varOutPath}1433-tcp-hosts.txt" ]; then mv ${varOutPath}1433-tcp-hosts.txt ${varOutPath}mssql-hosts.txt; fi
+  if [ -f "${varOutPath}1900-udp-hosts.txt" ]; then mv ${varOutPath}1900-udp-hosts.txt ${varOutPath}upnp-hosts.txt; fi
+  if [ -f "${varOutPath}3306-tcp-hosts.txt" ]; then mv ${varOutPath}3306-tcp-hosts.txt ${varOutPath}mysql-hosts.txt; fi
   if [ -f "${varOutPath}3389-tcp-hosts.txt" ]; then mv ${varOutPath}3389-tcp-hosts.txt ${varOutPath}rdp-hosts.txt; fi
   if [ -f "${varOutPath}5432-tcp-hosts.txt" ]; then mv ${varOutPath}5432-tcp-hosts.txt ${varOutPath}postgresql-hosts.txt; fi
+  if [ -f "${varOutPath}5900-tcp-hosts.txt" ]; then mv ${varOutPath}5900-tcp-hosts.txt ${varOutPath}vnc-hosts.txt; fi
+  if [ -f "${varOutPath}6000-tcp-hosts.txt" ]; then mv ${varOutPath}6000-tcp-hosts.txt ${varOutPath}x11-hosts.txt; fi
   if [ -f "${varOutPath}8080-tcp-hosts.txt" ]; then mv ${varOutPath}8080-tcp-hosts.txt ${varOutPath}http-8080-hosts.txt; fi
   if [ -f "${varOutPath}8443-tcp-hosts.txt" ]; then mv ${varOutPath}8443-tcp-hosts.txt ${varOutPath}http-8443-hosts.txt; fi
 fi
@@ -311,17 +318,17 @@ echo
 wc -l ${varOutPath}*-hosts.txt | grep -v 'total' | tr '/' ' ' | awk '{print $1, $NF}'
 echo
 
-varShowSummary="N"
-if [ -e "${varOutPath}summary.txt" ]; then
-  read -p "Enter 'y' if you want to display summary.txt before ending... " varShowSummary
-  echo
-fi
-
-echo "=============================[ fin ]============================="
-echo
-
-if [ "$varShowSummary" = "Y" ] || [ "$varShowSummary" = "y" ]; then
-  echo
-  cat ${varOutPath}summary.txt
-  echo
-fi
+#varShowSummary="N"
+#if [ -e "${varOutPath}summary.txt" ]; then
+#  read -p "Enter 'y' if you want to display summary.txt before ending... " varShowSummary
+#  echo
+#fi
+#
+#echo "=============================[ fin ]============================="
+#echo
+#
+#if [ "$varShowSummary" = "Y" ] || [ "$varShowSummary" = "y" ]; then
+#  echo
+#  cat ${varOutPath}summary.txt
+#  echo
+#fi
